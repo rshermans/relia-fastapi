@@ -1,0 +1,36 @@
+{
+  "name": "RELIA 2.0 Agêntico",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python"
+      }
+    },
+    "codespaces": {
+      "openFiles": [
+        "README.md",
+        "backend/app/main.py"
+      ]
+    }
+  },
+  "forwardPorts": [8000, 3000],
+  "portsAttributes": {
+    "8000": {
+      "label": "FastAPI Backend",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Frontend RELIA",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postStartCommand": "python -m pytest backend/tests/ -x -q --tb=line || true"
+}

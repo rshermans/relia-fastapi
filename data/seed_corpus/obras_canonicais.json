@@ -1,0 +1,100 @@
+[
+  {
+    "slug": "os-lusiadas",
+    "titulo": "Os Lusíadas",
+    "autor": "Luís Vaz de Camões",
+    "epoca": "Renascentismo / Classicismo",
+    "genero": "Epopeia / Poesia Épica",
+    "descricao": "Obra magna da literatura em língua portuguesa, composta por dez cantos em oitava rima, narrando a viagem de Vasco da Gama à Índia entrecruzada com a história mitificada e heróica de Portugal.",
+    "capitulos_ou_cantos": [
+      {
+        "numero": 1,
+        "nome": "Canto I",
+        "excertos": [
+          {
+            "secao": "Proposição",
+            "estrofes": "1-3",
+            "texto": "As armas e os barões assinalados,\nQue da ocidental praia Lusitana,\nPor mares nunca de antes navegados,\nPassaram ainda além da Taprobana,\nEm perigos e guerras esforçados,\nMais do que prometia a força humana,\nE entre gente remota edificaram\nNovo Reino, que tanto sublimaram;\n\nE também as memórias gloriosas\nDaqueles Reis, que foram dilatando\nA Fé, o Império, e as terras viciosas\nDe África e de Ásia andaram devastando;\nE aqueles que por obras valerosas\nSe vão da lei da morte libertando;\nCantando espalharei por toda parte,\nSe a tanto me ajudar o engenho e arte.",
+            "analise_retorica": "Uso de anástrofe, enumeração gradativa e oximoro conceitual ('da lei da morte libertando'). Tom solene de invocação da matéria épica coletiva."
+          },
+          {
+            "secao": "Consílio dos Deuses",
+            "estrofes": "20-24",
+            "texto": "Quando os Deuses no Olimpo luminoso,\nOnde o governo está da humana gente,\nSe ajuntam em concílio glorioso,\nSobre as cousas futuras do Oriente.\nO Padre Júpiter alto e poderoso,\nQue rege os Céus e a terra onipotente,\nAssentado num trono de marfim,\nAssim começa a prática por fim:\n\n'Eternos moradores do luzente\nEstelífero Polo e claro Assento,\nSe do grande valor da forte gente\nDe Luso não perdeis o pensamento,\nJá deveis de saber que está ordenado\nNo fado eterno, que o Gentio e Mouro\nSeja por estes povos subjugado,\nCom triunfo e brasões de eterno louro.'",
+            "analise_retorica": "Plano mitológico. Intervenção do Fado contraposta à oposição de Baco e proteção de Vénus e Marte."
+          }
+        ]
+      },
+      {
+        "numero": 5,
+        "nome": "Canto V",
+        "excertos": [
+          {
+            "secao": "O Gigante Adamastor",
+            "estrofes": "37-40",
+            "texto": "Não acabava, quando uma figura\nSe nos mostra no ar, robusta e válida,\nDe disforme e grandíssima estatura;\nO rosto carregado, a barba esquálida,\nOs olhos encovados, e a postura\nMedonha e má, e a cor terrena e pálida;\nCheios de terra e crespos os cabelos,\nA boca negra, os dentes amarelos.\n\nTão grande era de membros, que bem posso\nCertificar-te que este era o segundo\nDe Rodes estranhíssimo Colosso,\nQue um dos sete milagres foi do mundo.\nCum tom de voz parlando, grande e grosso,\nQue pareceu sair do mar profundo,\nArrepiam-se as carnes e o cabelo\nA mi e a todos, só de ouvi-lo e vê-lo!",
+            "analise_retorica": "Personificação do Cabo das Tormentas. Prosopografia hiperbólica com gradação visual e auditiva aterrorizante. Simboliza a superação dos limites impostos pela natureza ao engenho humano."
+          }
+        ]
+      },
+      {
+        "numero": 9,
+        "nome": "Canto IX",
+        "excertos": [
+          {
+            "secao": "A Ilha dos Amores",
+            "estrofes": "88-91",
+            "texto": "Ó que famintos beijos na floresta,\nE que mimoso choro sonoroso!\nQue afagos tão suaves, que brandura,\nQue riso tão alegre e tão fermoso!\nMais prazer põe a vista quando dura,\nQue o fruto do desejo apressuroso;\nSe a meio gasta as forças a esperança,\nMais folga o corpo quando à meta alcança.\n\nAssi a fermosa e a forte companhia\nAs ninfas vão gozando, que affeiçoadas\nAs esperavam já de muitos dias,\nNos laços de Cupido bem atadas.\nAs deusas que no Olimpo estão sentadas,\nLhe deram as delícias soberanas,\nQue a glória das conquistas sublimadas\nNão é senão favor de forças humanas.",
+            "analise_retorica": "Alegoria da imortalidade e da glorificação sensorial e moral dos heróis lusitanos. Desmistificação mitológica onde os deuses são arquétipos do esforço virtuoso humano."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "sermao-de-santo-antonio-aos-peixes",
+    "titulo": "Sermão de Santo António aos Peixes",
+    "autor": "Padre António Vieira",
+    "epoca": "Barroco (Século XVII)",
+    "genero": "Oratória / Prosa Barroca",
+    "descricao": "Sermão pregado em São Luís do Maranhão em 1654, no qual Vieira utiliza a alegoria dos peixes para fazer uma sátira social e moral contundente contra a corrupção e a exploração dos indígenas pelos colonos portugueses.",
+    "capitulos_ou_cantos": [
+      {
+        "numero": 1,
+        "nome": "Capítulo I - Exórdio",
+        "excertos": [
+          {
+            "secao": "O Conceito Predicável",
+            "estrofes": "Parágrafo Inicial",
+            "texto": "'Vos estis sal terrae' - Vós sois o sal da terra. Disse Cristo aos Apóstolos. E por que há-de ser o sal da terra? Porque a terra se corrompe e o sal preserva da corrupção. Mas se o sal se desvirtuar, com que se há-de salgar? Se a terra se não deixa salgar, que há-de fazer o sal? Mudar de terra. Visto que os homens não querem ouvir a palavra de Deus, vou pregar aos peixes.",
+            "analise_retorica": "Conceito predicável bíblico. Raciocínio silogístico disjuntivo típico da argumentação conceptista barroca. Inversão satírica do auditório."
+          }
+        ]
+      },
+      {
+        "numero": 4,
+        "nome": "Capítulo IV - Repreensões em Geral",
+        "excertos": [
+          {
+            "secao": "Os Grandes que Comem os Pequenos",
+            "estrofes": "Parágrafo Central",
+            "texto": "A primeira coisa que vos desedifica, ó peixes, é que vos comeis uns aos outros. Grande escândalo é este, mas a circunstância o faz ainda maior. Não só vos comeis uns aos outros, senão que os grandes comem os pequenos. Se fora pelo contrário, era menos mal. Se os pequenos comeram os grandes, bastava um grande para muitos pequenos; mas como os grandes comem os pequenos, não bastam cem pequenos, nem mil, para um grande. Olhai, peixes, lá do mar para a terra: não, não é isso o que vós fazeis, é o que fazem os homens!",
+            "analise_retorica": "Alegoria moral e sátira sociopolítica. Paralelismo antitético e gradação quantitativa. Denúncia da voracidade exploratória dos colonos sobre os povos fragilizados."
+          }
+        ]
+      },
+      {
+        "numero": 5,
+        "nome": "Capítulo V - Repreensões em Particular",
+        "excertos": [
+          {
+            "secao": "O Polvo e a Hipocrisia",
+            "estrofes": "Alegoria do Polvo",
+            "texto": "O polvo, com aquele aspecto tão modesto, tão manso, tão desarmado, de que não tem dentes nem espinhas, parece a própria candura e hipocrisia personificada. Mas debaixo daquela modéstia aparente, que cores e que disfarces não toma para trair os outros peixes? Abraça com brandura e sufoca com violência. Judas foi o maior traidor da história humana, mas o polvo no mar é o próprio Judas encarnado na água.",
+            "analise_retorica": "Metáfora do hipócrita e traidor dissimulado. Antítese entre aparência mansa e crueldade opressora. Comparação bíblica e histórica (Judas)."
+          }
+        ]
+      }
+    ]
+  }
+]

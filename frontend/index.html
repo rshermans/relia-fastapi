@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RELIA 2.0 - Mediação Agêntica da Leitura Literária & Ensino IAVE</title>
+  <meta name="description" content="Plataforma de Mediação Leitora Agêntica para o Ensino Secundário e Doutoramento em Ciências da Linguagem / Humanidades Digitais (UMinho / CEHUM).">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-layout">
+    
+    <!-- Barra Lateral de Navegação -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">📚</div>
+        <div class="brand-info">
+          <h1>RELIA</h1>
+          <span class="badge-agentic">2.0 Multi-LLM • IAVE</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" id="nav-obras" onclick="navigateTo('obras')">
+          <span class="icon">🏛️</span>
+          <span>Obras & Repositórios</span>
+        </button>
+        <button class="nav-item" id="nav-leitor" onclick="navigateTo('leitor')">
+          <span class="icon">📖</span>
+          <span>Área do Leitor</span>
+        </button>
+        <button class="nav-item" id="nav-chat" onclick="navigateTo('chat')">
+          <span class="icon">💬</span>
+          <span>Professor Literário</span>
+        </button>
+        <button class="nav-item" id="nav-checkpoints" onclick="navigateTo('checkpoints')">
+          <span class="icon">🎯</span>
+          <span>Avaliação IAVE</span>
+        </button>
+        <button class="nav-item" id="nav-llm" onclick="navigateTo('llm')">
+          <span class="icon">⚡</span>
+          <span>Chaves & Multi-LLM</span>
+        </button>
+        <button class="nav-item" id="nav-cientifico" onclick="navigateTo('cientifico')">
+          <span class="icon">🔬</span>
+          <span>Painel Científico (PhD)</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <div class="user-avatar" id="user-avatar-initials">RM</div>
+          <div class="user-meta">
+            <span class="user-name" id="display-user-name">Investigador Doutorando</span>
+            <span class="user-role" id="display-user-role">ELACH • UMinho / CEHUM</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <h2 id="page-title">Corpus de Obras & Repositórios Abertos</h2>
+          <p id="page-subtitle">Busca no Project Gutenberg, Google Books API e Ingestão com Segmentação Hermenêutica.</p>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="bloom-indicator-chip" id="active-iave-chip">
+            <span class="pulse-dot"></span>
+            <span>Camada: <strong id="iave-chip-text">Camada 2 (Retórico-Estilística)</strong></span>
+          </div>
+
+          <div class="llm-indicator-chip" id="active-llm-chip" onclick="navigateTo('llm')" title="Clique para alterar provedor LLM">
+            <span class="icon">🤖</span>
+            <span id="active-llm-text">Gemini 1.5 Pro</span>
+          </div>
+
+          <button class="theme-toggle-btn" onclick="toggleTheme()" title="Alternar Modo Escuro / Claro">
+            <span id="theme-icon">🌙</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- View: Obras & Repositórios (Gutenberg / Google Books / Upload) -->
+      <section id="view-obras" class="view-panel active">
+        <div class="ingest-tabs-bar">
+          <button class="tab-btn active" id="tab-btn-corpus" onclick="switchObrasTab('corpus')">📚 Corpus Local Ativo</button>
+          <button class="tab-btn" id="tab-btn-gutenberg" onclick="switchObrasTab('gutenberg')">🌐 Project Gutenberg</button>
+          <button class="tab-btn" id="tab-btn-google" onclick="switchObrasTab('google')">🔍 Google Books</button>
+          <button class="tab-btn" id="tab-btn-upload" onclick="switchObrasTab('upload')">✍️ Inserir Nova Obra</button>
+        </div>
+
+        <!-- Sub-Aba 1: Corpus Local -->
+        <div id="subtab-corpus" class="subtab-content active">
+          <div class="obras-grid" id="obras-cards-container">
+            <!-- Injetado via JS -->
+          </div>
+        </div>
+
+        <!-- Sub-Aba 2: Gutenberg Search -->
+        <div id="subtab-gutenberg" class="subtab-content">
+          <div class="search-bar-container">
+            <input type="text" id="gutenberg-search-input" placeholder="🔍 Pesquisar autor ou título no Gutenberg (ex: Camões, Eça de Queirós, Fernando Pessoa)..." onkeyup="if(event.key==='Enter') searchGutenberg()">
+            <button class="btn-primary" onclick="searchGutenberg()">Buscar no Gutenberg</button>
+          </div>
+          <div id="gutenberg-results-grid" class="obras-grid" style="margin-top: 1.5rem;">
+            <p class="empty-hint">Insira um autor ou título em língua portuguesa para pesquisar obras de domínio público.</p>
+          </div>
+        </div>
+
+        <!-- Sub-Aba 3: Google Books Search -->
+        <div id="subtab-google" class="subtab-content">
+          <div class="search-bar-container">
+            <input type="text" id="google-search-input" placeholder="🔍 Pesquisar edições e metadados no Google Books..." onkeyup="if(event.key==='Enter') searchGoogleBooks()">
+            <button class="btn-primary" onclick="searchGoogleBooks()">Buscar no Google Books</button>
+          </div>
+          <div id="google-results-grid" class="obras-grid" style="margin-top: 1.5rem;">
+            <p class="empty-hint">Pesquise referências bibliográficas e sinopses no acervo mundial do Google Books.</p>
+          </div>
+        </div>
+
+        <!-- Sub-Aba 4: Inserir Nova Obra Manualmente -->
+        <div id="subtab-upload" class="subtab-content">
+          <div class="delphi-form-card" style="max-width: 800px; margin: 0 auto;">
+            <h3>✍️ Ingestão e Segmentação Hermenêutica de Novo Texto</h3>
+            <p>O segmentador hermenêutico analisará o género (épica, oratória ou teatro), sanitizará quebras de linha e dividirá o texto em excertos coerentes com cálculo de hash SHA-256 e anotação de figuras de estilo.</p>
+            
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>Título da Obra:</label>
+                <input type="text" id="upload-titulo" placeholder="Ex: Amor de Perdição">
+              </div>
+              <div class="form-group">
+                <label>Autor:</label>
+                <input type="text" id="upload-autor" placeholder="Ex: Camilo Castelo Branco">
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label>Género Literário:</label>
+                <select id="upload-genero">
+                  <option value="Poesia Épica">Poesia Épica (Cantos / Oitavas Rimas)</option>
+                  <option value="Oratória / Prosa Barroca">Oratória / Sermão Barroco (Unidades Retóricas)</option>
+                  <option value="Teatro / Drama">Teatro / Drama (Cenas / Diálogos)</option>
+                  <option value="Romance / Prosa Narrativa" selected>Romance / Prosa Narrativa (Capítulos)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Época / Estilo:</label>
+                <input type="text" id="upload-epoca" placeholder="Ex: Romantismo / Século XIX">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Texto Integral ou Excerto Longo:</label>
+              <textarea id="upload-texto" rows="8" placeholder="Cole aqui o texto completo da obra..."></textarea>
+            </div>
+
+            <button class="btn-primary" onclick="submitManualIngest()">Segmentar e Adicionar ao Corpus RAG ➔</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Área do Leitor & Roteiro IAVE -->
+      <section id="view-leitor" class="view-panel">
+        <div class="leitor-grid">
+          <div class="leitor-text-column">
+            <div class="text-card-header">
+              <div>
+                <span class="obra-tag" id="leitor-obra-tag">Os Lusíadas • Canto V</span>
+                <h3 id="leitor-secao-titulo">O Gigante Adamastor</h3>
+              </div>
+              <div class="step-badge" id="leitor-step-badge">Excerto 1 • SHA-256 Validado</div>
+            </div>
+
+            <div class="text-card-body" id="leitor-texto-content">
+              <!-- Injetado via JS -->
+            </div>
+
+            <div class="rhetoric-box" id="leitor-retorica-box">
+              <div class="box-title">🔍 Análise Retórico-Estilística (Skill 1 • Extrator Discursivo)</div>
+              <p id="leitor-retorica-texto">Carregando notas hermenêuticas...</p>
+            </div>
+          </div>
+
+          <div class="leitor-journey-column">
+            <div class="journey-card">
+              <h3>Roteiro de Leitura Empática</h3>
+              <p class="journey-desc">4 Camadas de Estudo Conduzidas pelo Professor Literário.</p>
+              
+              <div class="iave-layers-stepper">
+                <div class="layer-step active" onclick="setIaveLayer('camada_1')">
+                  <span class="num">1</span>
+                  <div class="info">
+                    <strong>Descodificação Literal</strong>
+                    <small>Vocabulário de época e sujeito poético</small>
+                  </div>
+                </div>
+                <div class="layer-step active" onclick="setIaveLayer('camada_2')">
+                  <span class="num">2</span>
+                  <div class="info">
+                    <strong>Análise Retórico-Estilística</strong>
+                    <small>Figuras de estilo e expressividade formal</small>
+                  </div>
+                </div>
+                <div class="layer-step" onclick="setIaveLayer('camada_3')">
+                  <span class="num">3</span>
+                  <div class="info">
+                    <strong>Hermenêutica e Crítica</strong>
+                    <small>Contexto, alegoria e visão do mundo</small>
+                  </div>
+                </div>
+                <div class="layer-step" onclick="setIaveLayer('camada_4')">
+                  <span class="num">4</span>
+                  <div class="info">
+                    <strong>Escrita Argumentativa IAVE</strong>
+                    <small>Síntese orientada (Parâmetros C, F, E)</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="journey-actions" style="margin-top: 1.5rem;">
+                <button class="btn-primary" style="width: 100%;" onclick="openSocraticChatFromReader()">💬 Dialogar nesta Camada com o Agente</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Chat Socrático / Professor Literário -->
+      <section id="view-chat" class="view-panel">
+        <div class="chat-layout">
+          <div class="chat-main-column">
+            <div class="chat-header">
+              <div class="chat-agent-info">
+                <div class="agent-avatar">🦉</div>
+                <div>
+                  <h4>Professor Literário Automatizado (RELIA 2.0)</h4>
+                  <span class="agent-status" id="chat-status-text">Mediação Socrática • Camada 2: Análise Retórico-Estilística</span>
+                </div>
+              </div>
+
+              <div class="chat-controls-bar">
+                <select id="chat-camada-select" onchange="setIaveLayer(this.value)">
+                  <option value="camada_1">Camada 1: Descodificação Literal</option>
+                  <option value="camada_2" selected>Camada 2: Retórico-Estilística</option>
+                  <option value="camada_3">Camada 3: Hermenêutica / Crítica</option>
+                  <option value="camada_4">Camada 4: Escrita IAVE (Síntese)</option>
+                </select>
+
+                <select id="chat-provider-select" onchange="changeActiveLLMProvider(this.value)">
+                  <option value="gemini" selected>Google Gemini</option>
+                  <option value="claude">Anthropic Claude</option>
+                  <option value="openai">OpenAI (GPT-4o)</option>
+                  <option value="deepseek">DeepSeek</option>
+                  <option value="perplexity">Perplexity AI</option>
+                  <option value="xai">xAI (Grok)</option>
+                  <option value="kimi">Moonshot (Kimi)</option>
+                  <option value="qwen">Alibaba Qwen</option>
+                  <option value="ollama">Ollama (Local)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="chat-messages-container" id="chat-messages-box">
+              <!-- Mensagens injetadas via JS -->
+            </div>
+
+            <div class="chat-input-container">
+              <textarea id="chat-user-input" placeholder="Partilhe a sua interpretação, resposta ou dúvida..." rows="2" onkeydown="handleChatKeyDown(event)"></textarea>
+              <button class="btn-send" onclick="sendChatMessage()">
+                <span>Enviar</span>
+                <span class="send-icon">➤</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Painel Lateral: Inspetor de Skills -->
+          <div class="chat-inspector-column">
+            <div class="inspector-card">
+              <h4>🧠 Inspetor de Skills do PhD</h4>
+              <div class="skill-insight-block">
+                <div class="skill-tag">Skill 1: Extrator Discursivo</div>
+                <div id="inspector-skill1-content" class="skill-content">
+                  <em>Aguardando início do diálogo...</em>
+                </div>
+              </div>
+
+              <div class="skill-insight-block">
+                <div class="skill-tag">Skill 2: Formulador Socrático</div>
+                <div id="inspector-skill2-content" class="skill-content">
+                  <em>Diretiva de ancoragem e ambiguidade ativa.</em>
+                </div>
+              </div>
+
+              <div class="skill-insight-block">
+                <div class="skill-tag">Provedor & Resiliência</div>
+                <div id="inspector-llm-meta" class="skill-content">
+                  <span>Provedor: <strong id="meta-provider">gemini</strong></span><br>
+                  <span>Fallback Local: <strong id="meta-fallback">Pronto</strong></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Avaliação IAVE (Checkpoints & Metacognição) -->
+      <section id="view-checkpoints" class="view-panel">
+        <div class="checkpoints-layout">
+          <div class="checkpoint-form-card">
+            <div class="card-badge">Skill 3: Avaliador Metacognitivo (Grelha IAVE)</div>
+            <h3 id="cp-pergunta-titulo">Item Oficial IAVE • Dimensão Simbólica do Adamastor</h3>
+            <p id="cp-pergunta-desc" class="cp-desc">Explicite a dupla dimensão simbólica do Gigante Adamastor (Canto V), relacionando a sua caracterização física com o impacto psicológico na tripulação lusitana e justificando com transcrições textuais.</p>
+
+            <div class="form-group">
+              <label for="cp-resposta-input">A sua Resposta Argumentada (Padrão Exame Nacional):</label>
+              <textarea id="cp-resposta-input" rows="6" placeholder="Escreva a sua resposta integrando citações do excerto e marcadores discursivos..."></textarea>
+            </div>
+
+            <button class="btn-primary" onclick="submitCheckpointEvaluation()">Submeter para Avaliação Oficial IAVE ➔</button>
+          </div>
+
+          <div id="cp-feedback-container" class="checkpoint-feedback-card hidden">
+            <!-- Injetado via JS com Parâmetros C, F, E e Nota 0-20 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Chaves & Multi-LLM Settings -->
+      <section id="view-llm" class="view-panel">
+        <div class="delphi-dashboard">
+          <div class="delphi-form-card" style="max-width: 900px; margin: 0 auto;">
+            <h3>⚡ Gestão de Provedores Multi-LLM & Chaves de API</h3>
+            <p>Selecione e configure as suas credenciais de inferência para as principais LLMs do estado da arte mundial. As chaves são mantidas na sua sessão de trabalho de forma segura.</p>
+
+            <div class="llm-cards-grid" id="llm-providers-container">
+              <!-- Injetado via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- View: Painel Científico do PhD (Transparência de RAG, Excertos e Exportação) -->
+      <section id="view-cientifico" class="view-panel">
+        <div class="delphi-dashboard">
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-num" id="sci-stat-obras">2</div>
+              <div class="stat-label">Obras Indexadas</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="sci-stat-excertos">8</div>
+              <div class="stat-label">Excertos com Hashes SHA-256</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-num" id="sci-stat-avaliacoes">12</div>
+              <div class="stat-label">Avaliações IAVE Registadas</div>
+            </div>
+            <div class="stat-card highlight">
+              <div class="stat-num" id="sci-stat-export">SPSS / R / NVivo</div>
+              <div class="stat-label">Formatos Científicos Prontos</div>
+            </div>
+          </div>
+
+          <!-- Botões de Exportação Científica -->
+          <div class="export-banner-card">
+            <div class="export-info">
+              <h3>📦 Exportação de Dados Empíricos para Investigação</h3>
+              <p>Descarregue o corpus estruturado e as métricas de mediação socrática formatadas para software de análise quantitativa e qualitativa.</p>
+            </div>
+            <div class="export-buttons-group">
+              <a href="http://127.0.0.1:8000/api/cientifico/export/spss" target="_blank" class="btn-export spss">📊 Baixar Dataset SPSS (.csv)</a>
+              <a href="http://127.0.0.1:8000/api/cientifico/export/r-script" target="_blank" class="btn-export r">📈 Baixar Script R (.R)</a>
+              <a href="http://127.0.0.1:8000/api/cientifico/export/nvivo" target="_blank" class="btn-export nvivo">📝 Baixar Corpus NVivo (.json)</a>
+            </div>
+          </div>
+
+          <!-- Simulador de RAG Glass-Box -->
+          <div class="delphi-form-card" style="margin-top: 1.5rem;">
+            <h3>🔍 Simulador de RAG Transparente (Glass-Box)</h3>
+            <p>Teste como o motor de busca vetorial e lexical localiza e classifica os excertos da obra literária com as devidas pontuações de similaridade e justificações hermenêuticas.</p>
+            
+            <div class="search-bar-container">
+              <input type="text" id="rag-sim-query" placeholder="🔍 Insira um conceito ou pergunta (ex: crítica à hipocrisia, aviso do velho do restelo)...">
+              <button class="btn-primary" onclick="executeRAGSimulation()">Simular Recuperação RAG</button>
+            </div>
+
+            <div id="rag-sim-results" class="rag-results-container" style="margin-top: 1rem;">
+              <p class="empty-hint">Execute uma simulação para visualizar a pontuação e transparência do RAG.</p>
+            </div>
+          </div>
+
+          <!-- Tabela de Inspeção de Excertos -->
+          <div class="delphi-logs-card" style="margin-top: 1.5rem;">
+            <h3>📑 Inspetor Científico de Excertos & Métricas de PLN</h3>
+            <div class="table-responsive">
+              <table class="scientific-table" id="scientific-excerpts-table">
+                <thead>
+                  <tr>
+                    <th>Obra / Localização</th>
+                    <th>Hash SHA-256</th>
+                    <th>Camada IAVE</th>
+                    <th>Palavras / TTR</th>
+                    <th>Figuras de Estilo Detetadas</th>
+                  </tr>
+                </thead>
+                <tbody id="scientific-table-body">
+                  <!-- Injetado via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

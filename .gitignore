@@ -1,0 +1,43 @@
+.idea/
+
+# Arquivos de revisão e documentos de planeamento
+.docsrevisao/
+.documentacao.phd
+# Ignorar arquivos de configuração sensíveis
+.streamlit/secrets.toml
+*.env
+.env
+!backend/.env.example
+
+# Ignorar pastas de compilação
+__pycache__/
+*.py[cod]
+
+# Ignorar logs
+*.log
+
+# Ignorar bancos de dados locais
+*.sqlite3
+*.db
+data/*.db
+
+# Ignorar caches de Jupyter notebooks
+.ipynb_checkpoints/
+
+# Ignorar arquivos específicos de IDEs
+.vscode/
+
+# Ignorar pastas de virtualenv
+venv/
+env/
+relia-env/
+
+# Docker
+docker-data/
+
+# Pytest / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "EN-LUS-01",
+    "obra_slug": "os-lusiadas",
+    "ano_exame": 2022,
+    "fase": "1ª Fase",
+    "canto": 5,
+    "nivel_bloom": "Analisar",
+    "pergunta": "Explicite a dupla dimensão simbólica da figura do Adamastor (Canto V), relacionando a sua caracterização física com o impacto psicológico na tripulação lusitana.",
+    "criterios_avaliacao": [
+      "Identificação do Adamastor como representação mitológica do Cabo das Tormentas e dos perigos desconhecidos do oceano.",
+      "Análise da transmutação dos elementos naturais em traços anatómicos aterrorizadores (rosto carregado, boca negra, cabelos crespos de terra).",
+      "Relação entre a soberba titânica e o temor reverente sentido pelos navegadores lusos, que culmina na superação heroica pelo engenho e coragem."
+    ],
+    "resposta_modelo": "O Adamastor personifica quer a barreira geográfica do Cabo das Tormentas, quer a resistência ancestral das forças cósmicas contra a ousadia humana. A sua caracterização hiperbólica e telúrica provoca o terror sublime na tripulação, mas a sua subsequente profecia e lamento amoroso revelam a vulnerabilidade do mito perante a determinação heroica e cristã dos navegadores."
+  },
+  {
+    "id": "EN-LUS-02",
+    "obra_slug": "os-lusiadas",
+    "ano_exame": 2023,
+    "fase": "2ª Fase",
+    "canto": 1,
+    "nivel_bloom": "Avaliar",
+    "pergunta": "Avalie o papel do Consílio dos Deuses no Canto I enquanto mecanismo de ampliação épica e legitimação do império português.",
+    "criterios_avaliacao": [
+      "Reconhecimento da convenção clássica do plano mitológico como espelho e propulsor do plano da viagem.",
+      "Contraste entre as posições de Baco (inveja/oposição) e Vénus/Marte (afeto e valor marcial).",
+      "Avaliação crítica da subordinação dos deuses pagãos ao Fado que destina a glória imortal aos Lusíadas."
+    ],
+    "resposta_modelo": "O Consílio dos Deuses eleva a viagem marítima a uma escala cósmica. Ao colocar o destino dos portugueses em deliberação olímpica, Camões não apenas cumpre o cânone épico renascentista, mas legitima ideologicamente a expansão, demonstrando que o valor humano supera até a inveja dos deuses."
+  },
+  {
+    "id": "EN-VIE-01",
+    "obra_slug": "sermao-de-santo-antonio-aos-peixes",
+    "ano_exame": 2021,
+    "fase": "1ª Fase",
+    "capitulo": 4,
+    "nivel_bloom": "Analisar",
+    "pergunta": "Analise a eficácia persuasiva da alegoria dos 'peixes grandes que comem os pequenos' no Capítulo IV, evidenciando o duplo auditório a quem Vieira se dirige.",
+    "criterios_avaliacao": [
+      "Identificação do auditório aparente (os peixes) e do auditório real (os colonos do Maranhão).",
+      "Explicitação do argumento ético-social contra a usura e a exploração desmedida.",
+      "Análise dos recursos estilísticos de gradação quantitativa e antítese."
+    ],
+    "resposta_modelo": "A alegoria opera com grande mordacidade porque, sob o pretexto de repreender a fauna marinha, Vieira desmascara a hierarquia predatória dos colonizadores humanos. A desproporção matemática ('não bastam cem pequenos para um grande') evidencia a insaciabilidade da tirania social e económica."
+  },
+  {
+    "id": "EN-VIE-02",
+    "obra_slug": "sermao-de-santo-antonio-aos-peixes",
+    "ano_exame": 2023,
+    "fase": "1ª Fase",
+    "capitulo": 5,
+    "nivel_bloom": "Criar",
+    "pergunta": "Com base na caracterização do Polvo no Capítulo V, elabore uma reflexão crítica relacionando a crítica vieiriana da hipocrisia e das falsas aparências com os dilemas éticos contemporâneos na comunicação digital.",
+    "criterios_avaliacao": [
+      "Compreensão do paralelismo entre o mimetismo do polvo e a dissimulação humana (comparação com Judas).",
+      "Transposição coerente para a contemporaneidade (mídias sociais, personas digitais e pós-verdade).",
+      "Sustentação argumentativa clara, coesa e bem estruturada."
+    ],
+    "resposta_modelo": "Assim como o polvo vieiriano se camufla sob as cores da pedra para capturar a presa indefesa, os ambientes digitais contemporâneos frequentemente premiam personas artificiais e discursos de modéstia calculada. A lição barroca permanece fulcral: a perigosidade moral reside precisamente naqueles que abraçam com brandura antes de sufocar com violência."
+  }
+]

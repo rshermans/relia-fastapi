@@ -1,0 +1,55 @@
+# ──────────────────────────────────────────────────────
+# RELIA 2.0 Agêntico — Docker Compose
+# Backend FastAPI + Frontend Nginx + Rede partilhada
+# ──────────────────────────────────────────────────────
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: backend
+    container_name: relia-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - relia-data:/app/data
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-relia-phd-super-secret-key-2026-humanidades-digitais}
+      - DEFAULT_LLM_PROVIDER=${DEFAULT_LLM_PROVIDER:-gemini}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import httpx; r = httpx.get('http://localhost:8000/'); exit(0 if r.status_code == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - relia-net
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    container_name: relia-frontend
+    ports:
+      - "3030:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - relia-net
+    restart: unless-stopped
+
+volumes:
+  relia-data:
+    driver: local
+
+networks:
+  relia-net:
+    driver: bridge
