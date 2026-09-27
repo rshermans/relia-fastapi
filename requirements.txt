@@ -169,3 +169,5 @@ wrapt==1.16.0
 yarl==1.15.3
 streamlit-chat 
 google-generativeai
+langgraph>=1.2.0
+langchain-core>=1.6.0
